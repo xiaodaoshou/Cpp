@@ -96,6 +96,50 @@ int main() {
 
 
 
+### 继承中同名静态成员处理方式
+
+示例：
+
+```C++
+#include<iostream>
+using namespace std;
+class Base {
+public:static int m_A;
+	  static void fun() {
+		  cout << "Base下的fun" << endl;
+	  }
+};
+int Base::m_A = 10;
+class Son:public Base {
+public:static int m_A;
+	  static void fun() {
+		  cout << "Son下的fun" << endl;
+	  }
+};
+int Son::m_A = 20;
+void test() {
+	Son s;
+	//通过对象访问
+	cout << "Son下的m_A=" << s.m_A<<endl;
+	cout << "Base下的m_A=" <<s.Base::m_A <<endl;
+	s.fun();
+	s.Base::fun();
+	//通过类名访问
+	cout << "Son下的m_A=" <<Son::m_A <<endl;
+	cout << "Base下的m_A=" <<Son::Base::m_A<< endl;
+	Son::fun();
+	Son::Base::fun();
+}
+int main() {
+	test();
+	return 0;
+}
+```
+
+总结：同名静态成员与非静态成员处理方式一样，其父类的同名成员被隐藏起来，并非没有继承，而是需要通过加作用域运算符来访问。在派生类对象的内存中仍有父类的同名成员空间。
+
+
+
 ### 多继承语法
 
 C++中允许一个类继承多个类。
