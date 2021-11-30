@@ -94,3 +94,84 @@ int main() {
 
 3 当派生类拥有与基类同名的成员函数时，派生类会隐藏基类的同名成员函数，加作用域可以访问基类中同名函数（**即使派生类中没有基类中同名成员的重载函数，也不能直接访问基类中同名成员的重载函数**）。
 
+
+
+### 多继承语法
+
+C++中允许一个类继承多个类。
+
+单继承中，派生类是基类的特例化，而在多继承中，派生类则是所有基类的一种组合。
+
+语法：`class 派生类:继承方式 基类1，继承方式 基类2，。。。。。`
+
+多继承可能会引发派生类与多个基类的成员同名问题，可以加作用域来解决。
+
+**注意事项：实际开发中不建议使用多继承。**
+
+示例：
+
+```c++
+#include<iostream>
+using namespace std;
+class Base1 {
+public:  int m_A;
+	  Base1() {
+		  m_A = 10;
+	  }
+	
+};
+class Base2 {
+public: int m_A;
+	  Base2() {
+		  m_A = 20;
+	  }
+};
+class Son :public Base1,public Base2{
+public:
+	int m_C;
+	Son() {
+		m_C = 30;
+	}
+};
+void test() {
+	Son s;
+	cout << "Base1中的m_A=" << s.Base1::m_A << endl;
+	cout << "Base2中的m_A=" << s.Base2::m_A << endl;
+	cout << "Son中的m_C=" << s.m_C << endl;
+}
+int main() {
+	test();
+	return 0;
+}
+```
+
+
+
+### 菱形继承
+
+菱形继承是指一个派生类继承自另外两个派生类，而这两个派生类又继承自同一个基类。
+
+ 
+
+```C++
+#include<iostream>
+using namespace std;
+class Animal {
+public:int m_age;
+};
+class lion :virtual public Animal {};
+class tiger :virtual public Animal{};
+class liger :public lion, public tiger {};
+void test() {
+	liger l;
+	l.lion::m_age = 12;
+	l.tiger::m_age = 13;
+	cout << "l.lion::m_age的年龄为" << l.lion::m_age << endl;
+	cout << "l.tiger::m_age的年龄为" << l.tiger::m_age << endl;
+}
+int main() {
+	test();
+	return 0;
+}
+```
+
