@@ -1,5 +1,52 @@
 # C++核心编程
 
+## 引用
+
+### 引用的语法
+
+引用的作用：给变量起别名。
+
+
+
+语法：`数据类型 &引用 = 变量`。
+
+
+
+示例：
+
+```c++
+#include<iostream>
+using namespace std;
+void test() {
+	int a=10;
+	int& b = a;
+	cout << "a的值为：" << a<<endl;
+	cout << "b的值为：" <<b<< endl;
+	b = 20;
+    
+	cout << "a的值为：" << a << endl;
+	cout << "b的值为：" << b << endl;
+	int& c = a;
+    
+	cout << "c的值为：" << c << endl;
+}
+int main() {
+   
+	test();
+	return 0;
+}
+```
+
+
+
+总结：
+
+1 引用必须初始化。（**即不存在空引用**）
+
+2 引用初始化后只能绑定一个对象，不能指向其他对象。
+
+3一个对象能有多个引用。
+
 ## 继承
 
 ### 继承方式
