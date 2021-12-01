@@ -2,7 +2,62 @@
 
 ## 继承
 
+### 继承方式
 
+C++中继承方式有三种，分别为public，protected，private。
+
+语法：`class 派生类 : 继承方式 基类`
+
+示例：
+
+```c++
+#include<iostream>
+using namespace std;
+class Base {
+public:int m_A;
+protected:int m_B;
+private:int m_C;
+};
+class Son1 :public Base {
+public:Son1() {
+		m_A = 1;
+		cout << m_A << endl;
+		m_B = 1;
+		cout << m_B << endl;
+	}
+};
+class Son2 :protected Base {
+public:	Son2() {
+		m_A = 2;
+		cout << m_A << endl;
+		m_B = 2;
+		cout << m_B << endl;
+	}
+};
+class Son3 :private Base {
+public:	Son3() {
+		m_A = 3;
+		cout << m_A << endl;
+		m_B = 3;
+		cout << m_B << endl;
+	}
+};
+void test() {
+	Son1 s1;
+	Son2 s2;
+	Son3 s3;
+}
+int main() {
+	test();
+	return 0;
+}
+```
+
+总结：
+
+1 无论何种继承方式，基类非private的成员都能在派生中访问。
+
+2 派生类会提升低于继承方式访问权限的基类成员在派生类的访问权限。
 
 ### 继承中的构造和析构顺序
 
@@ -86,13 +141,17 @@ int main() {
 }
 ```
 
+派生类对象模型：
+
+![派生类对象内存模型](H:\md文档\派生类对象内存模型.png)
+
 总结：
 
 1 派生类对象可以直接访问本类中的同名成员。
 
 2 派生类对象加作用域可以访问基类中的同名成员。
 
-3 当派生类拥有与基类同名的成员函数时，派生类会隐藏基类的同名成员函数，加作用域可以访问基类中同名函数（**即使派生类中没有基类中同名成员的重载函数，也不能直接访问基类中同名成员的重载函数**）。
+3 当派生类拥有与基类同名的成员函数时，派生类会隐藏基类的同名成员函数，但是派生类的对象模型中仍然有父类的同名成员，加作用域可以访问基类中同名函数（**即使派生类中没有基类中同名成员的重载函数，也不能直接访问基类中同名成员的重载函数**）。
 
 
 
