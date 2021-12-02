@@ -1,5 +1,46 @@
 # C++核心编程
 
+## 指针
+
+### 指针语法
+
+指针定义：`数据类型 * 指针变量名。`
+
+指针变量赋值：`指针变量 =&变量。`
+
+指针使用：通过*解引用操作符来获取指针指向内存的数据。
+
+在32位操作系统下，指针占4个字节大小。
+
+在64位操作系统下，指针占8个字节大小。
+
+```c++
+#include<iostream>
+using namespace std;
+void test() {
+	int* p;
+	int a = 10;
+	p = &a;
+	cout << "a的地址为：" << &a << endl;
+	cout << "p的值：" << p << endl;
+	cout<< "a的值：" << *p << endl;
+    cout << "sizeof(int *)" << sizeof(int *)<<endl;
+	cout << "sizeof(char *)" << sizeof(char*) << endl;
+	cout << "sizeof(float *)" << sizeof(float*) << endl;
+	cout << "sizeof(double *)" << sizeof(double*) << endl;
+	cout << "sizeof(string *)" << sizeof(string*) << endl;
+
+}
+int main() {
+	test();
+	return 0;
+}
+```
+
+总结：
+
+1 指针和引用不同，指针是对象有内存空间，可以修改指针的指向，而引用不是对象没有内存空间，不能修改绑定对象。
+
 ## 引用
 
 ### 引用的语法
