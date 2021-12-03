@@ -66,6 +66,49 @@ int main() {
 
 总结：空指针和野指针指向的都不是我们申请的内存空间，所以不要访问。
 
+### const修饰指针
+
+const修饰指针有三种情况
+
+1 `const int*p=&a或者int const *p=&a`  
+
+**常量指针**(**指向常量的指针**)。
+
+**注意**：常量指针限制了指针的间接访问，使得指针无法修改指针指向的地址中的内容，并非代表指针指向的地址中的内容是常量无法修改。
+
+2 i`nt*const p=&a` 
+
+**指针常量：**
+
+**指针本身是个常量**，指针的指向不能改变，其指向的地址中的值是可变的。
+
+3 const int *const p=&a 或者 int const int *const p=&a。
+
+**指向常量的指针常量：**
+
+指针的指向和指针指向的地址中的值都不能改变。
+
+示例：
+
+```c++
+#include<iostream>
+using namespace std;
+void test() {
+	int a = 10;
+	int b = 20;
+	int c = 30;
+	const int* p0 = &a;//常量指针
+	int * const p1 = &b;//指针常量
+	const int* const p2 = &c;//指向常量的指针常量
+}
+int main() {
+	test();
+	return 0;
+}
+```
+
+
+
 ## 引用
 
 ### 引用的语法
