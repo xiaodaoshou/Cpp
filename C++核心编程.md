@@ -120,7 +120,7 @@ int main() {
 
 2 const 限制的是指针的指向或指针的值，但不限制通过原变量来直接修改值。
 
-### 指针的算术运算
+### 指针的算术运算和数组
 
 指针可以进行四种运算：++，--，+，-。
 
@@ -148,31 +148,21 @@ int main() {
 
 !=可以用来检测指针是否为空指针。
 
-**p=NULL；**
+**p=NULL；
 
-```c++
+示例：
+
+```
 #include<iostream>
 using namespace std;
 void test() {
-	short int a = 10;
-	int b = 11;
-	short int* p0 = &a;
-	int* p1 = &b;
-    int* p2=&b;
-	cout << "p0的值:" << (int)p0 << endl;
-	cout << "p1的值:" <<(int) p1 << endl;
-	p0 = p0 + 1;
-	p1 = p1 + 1;
-	cout << "p0的值:" <<(int) p0 << endl;
-	cout << "p1的值:" << (int)p1 << endl;
-	p0 = p0 - 1;
-	p1 = p1 - 1;
-	cout << "p0的值:" << (int)p0 << endl;
-	cout << "p1的值:" << (int)p1 << endl;
-    if (p2 != NULL)
-		cout << "p2是空指针" << endl;
-	else
-		cout << "p2不是空指针" << endl;
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	int* p = arr;
+	for (int i = 0;i < 10;*p++)
+	{
+		cout << "访问数组第" << i << "个元素" << *p<<endl;
+		i++;
+	}
 }
 int main() {
 	test();
@@ -180,7 +170,35 @@ int main() {
 }
 ```
 
+对一个指向简单变量的指针执行加减运算是没有意义的，指针运算与数组有关。
 
+示例：
+
+```
+#include<iostream>
+using namespace std;
+void test() {
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	int* p = arr;
+	for (int i = 0;i < 10;*p++)
+	{
+		cout << "访问数组第" << i << "个元素" << *p<<endl;
+		i++;
+	}
+}
+int main() {
+	test();
+	return 0;
+}
+```
+
+### 指针和函数
+
+**指针可以作为函数的参数，使用指针做函数参数可以在调用函数时改变变量在原函数的值，因此要小心使用。**
+
+总结：
+
+有了指针做参数，函数不仅有输入参数，也有输出参数，函数可以返回多个值。
 
 ## 引用
 
