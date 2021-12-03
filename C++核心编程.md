@@ -82,7 +82,7 @@ const修饰指针有三种情况
 
 **指针本身是个常量**，指针的指向不能改变，其指向的地址中的值是可变的。
 
-3 const int *const p=&a 或者 int const int *const p=&a。
+3 `const int *const p=&a 或者 int const int *const p=&a`。
 
 **指向常量的指针常量：**
 
@@ -107,6 +107,72 @@ void test() {
 	cout <<"*p2的值为：" << *p2 << endl;
 	c = 31;
 	cout << "*p2的值为：" << *p2 << endl;
+}
+int main() {
+	test();
+	return 0;
+}
+```
+
+总结：
+
+1 const 修饰的是什么，什么就是常量。
+
+2 const 限制的是指针的指向或指针的值，但不限制通过原变量来直接修改值。
+
+### 指针的算术运算
+
+指针可以进行四种运算：++，--，+，-。
+
+**+运算：**
+
+指针每+1，则指针指向的地址往后移指针指向的数据类型大小个字节。
+
+例如：int *p，当p+1，则指针p向后移4个字节。
+
+**-运算：**
+
+与+运算相反，指针每-1则指针指向的地址往前移指针指向的数据类型大小个字节。
+
+例如：int *p，当p-1，则指针p向前移4个字节。
+
+**++运算：**
+
+对指针进行递增运算，把值加上其数据类型的字节大小。
+
+**--运算：**
+
+对指针进行递减运算，把值减去其数据类型的字节大小。
+
+**==,>=,<=,!=**
+
+!=可以用来检测指针是否为空指针。
+
+**p=NULL；**
+
+```c++
+#include<iostream>
+using namespace std;
+void test() {
+	short int a = 10;
+	int b = 11;
+	short int* p0 = &a;
+	int* p1 = &b;
+    int* p2=&b;
+	cout << "p0的值:" << (int)p0 << endl;
+	cout << "p1的值:" <<(int) p1 << endl;
+	p0 = p0 + 1;
+	p1 = p1 + 1;
+	cout << "p0的值:" <<(int) p0 << endl;
+	cout << "p1的值:" << (int)p1 << endl;
+	p0 = p0 - 1;
+	p1 = p1 - 1;
+	cout << "p0的值:" << (int)p0 << endl;
+	cout << "p1的值:" << (int)p1 << endl;
+    if (p2 != NULL)
+		cout << "p2是空指针" << endl;
+	else
+		cout << "p2不是空指针" << endl;
 }
 int main() {
 	test();
