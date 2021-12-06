@@ -75,3 +75,41 @@ int main() {
 
 ### 1.2类模板
 
+#### 1.21类模板语法
+
+作用：建立一个通用类，类中成员数据类型可以不具体制定。
+
+```c++
+template<class T>
+    类
+```
+
+示例：
+
+```C++
+#include<iostream>
+using namespace std;
+template<class nametype,class agetype>
+class Person {
+public:nametype m_name;
+	  agetype m_age;
+	  Person(nametype name,agetype age) {
+		  this->m_name = name;
+		  this->m_age = age;
+	  }
+	  void showPerson() {
+		  cout << this->m_name << endl;
+		  cout << this->m_age << endl;
+	  }
+};
+void test() {
+	Person <string,long>person("孙悟空", 999);
+	person.showPerson();
+}
+int main() {
+	test();
+	return 0;
+}
+```
+
+总结：类模板语法与函数相似，在template后接上一个类，该类被称为类模板
