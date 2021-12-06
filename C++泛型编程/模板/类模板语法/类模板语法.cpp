@@ -14,8 +14,10 @@ public:nametype m_name;
 	  }
 };
 void test() {
-	Person <string,long>person("ËïÎò¿Õ", 999);
-	person.showPerson();
+	Person <string, int>person0("ËïÎò¿Õ", 999);
+	Person <string,long>person1("Öí°Ë½ä", 958);
+	person0.showPerson();
+	person1.showPerson();
 }
 int main() {
 	test();
