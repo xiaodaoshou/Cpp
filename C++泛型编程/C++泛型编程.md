@@ -124,3 +124,36 @@ int main() {
 
 2 类模板有默认的参数列表。
 
+示例：
+
+```C++
+#include<iostream>
+using namespace std;
+template<class nametype=string,class agetype=int>
+class Person {
+public:nametype m_name;
+	  agetype m_age;
+	  Person(nametype name, agetype age) {
+		  this->m_name = name;
+		  this->m_age = age;
+	  }
+	  void showPerson() {
+		  cout << this->m_name << endl;
+		  cout << this->m_age << endl;
+	  }
+};
+void test() {
+	Person<> person0("孙悟空", 999);
+	Person<string,double> person1("孙悟空", 999.01);
+	person0.showPerson();
+	person1.showPerson();
+}
+int main() {
+	test();
+	return 0;
+}
+```
+
+总结：
+
+类模板在没有显示指定类型的情况下回使用默认参数列表，但是实例化时必须加<>。
